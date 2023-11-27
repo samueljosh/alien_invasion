@@ -1,4 +1,5 @@
 import pygame 
+from pygame.sprite import Group
 
 from settings import Settings
 from ship import Ship 
@@ -17,11 +18,16 @@ def run_game():
     
     #cria uma espaçonave 
     ship = Ship(ai_settings, screen)
+    #Cria um grupo no qual serão armazenado os projéteis
+    bullets = Group()
     #inicia o laco principal do jogo
     while True:
-      gf.check_events(ship)
+      gf.check_events(ai_settings, screen, ship, bullets)
       ship.update()
-      gf.update_screen(ai_settings, screen, ship)
+      gf.update_bullets(bullets)
+      gf.update_screen(ai_settings, screen, ship, bullets)
+
+      
       
       
 		
